@@ -1,0 +1,7 @@
+{
+  "parent": "item/generated",
+  "textures": {
+    "layer0": "betterallays:item/white_headphones",
+    "layer1": "betterallays:item/headphones_base"
+  }
+}
