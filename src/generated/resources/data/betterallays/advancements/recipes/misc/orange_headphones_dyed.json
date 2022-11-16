@@ -1,0 +1,35 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "AllayDropItem": {
+      "conditions": {
+        "item": {},
+        "location": {
+          "block": {
+            "blocks": [
+              "minecraft:note_block"
+            ]
+          }
+        }
+      },
+      "trigger": "minecraft:allay_drop_item_on_block"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "betterallays:orange_headphones_dyed"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "AllayDropItem",
+      "has_the_recipe"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "betterallays:orange_headphones_dyed"
+    ]
+  }
+}
