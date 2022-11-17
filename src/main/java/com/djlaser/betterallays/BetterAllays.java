@@ -1,5 +1,6 @@
 package com.djlaser.betterallays;
 
+import com.djlaser.betterallays.block.ModBlocks;
 import com.djlaser.betterallays.item.ModItems;
 import com.mojang.logging.LogUtils;
 import net.minecraftforge.common.MinecraftForge;
@@ -21,6 +22,7 @@ public class BetterAllays {
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
 
         ModItems.register(modEventBus);
+        ModBlocks.register(modEventBus);
 
         modEventBus.addListener(this::commonSetup);
 
