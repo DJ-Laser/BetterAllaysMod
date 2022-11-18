@@ -1,5 +1,8 @@
 package com.djlaser.betterallays.datagen;
 
-public class ModLootTableProvider {
+import net.minecraft.data.DataGenerator;
+import net.minecraft.data.loot.LootTableProvider;
 
+public class ModLootTableProvider extends LootTableProvider{
+    
 }
