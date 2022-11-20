@@ -1,5 +1,7 @@
-// 1.19	2022-11-17T16:34:23.1758564	Block States: betterallays
+// 1.19	2022-11-20T15:07:24.776758	Block States: betterallays
 8ff86a030af73df61ee4fb5d839c3ee8d49a453e assets/betterallays/blockstates/budding_jade.json
 a4b8e656845456be0cfbb52d7b645c89501ee701 assets/betterallays/blockstates/jade_block.json
 4bed6a566d24aa3a505819445864102ca2c9d6eb assets/betterallays/models/block/budding_jade.json
 f130435c0196b594d4893010313cb29d2baca05c assets/betterallays/models/block/jade_block.json
+e7dd127179a2e7034acec56c161ab630ddae04bb assets/betterallays/models/item/budding_jade.json
+9ea1887383aa671e418a95b2bb03f382da0ffa40 assets/betterallays/models/item/jade_block.json

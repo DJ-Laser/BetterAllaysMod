@@ -27,17 +27,14 @@ public class ModItemModelProvider extends ItemModelProvider {
     @Override
     protected void registerModels() {
         makeHeadphones();
-        
     }
 
     private ItemModelBuilder headphoneItem(Item item, String color) {
-        ResourceLocation location = ForgeRegistries.ITEMS.getKey(item);;
+        ResourceLocation location = ForgeRegistries.ITEMS.getKey(item);
         return withExistingParent(location.toString(),
                 new ResourceLocation("item/generated"))
                 .texture("layer0",
-                new ResourceLocation(BetterAllays.MODID,"item/headphones/" + color))
-                .texture("layer1",
-                        new ResourceLocation(BetterAllays.MODID,"item/headphones/base"));
+                new ResourceLocation(BetterAllays.MODID,"item/headphones/" + color));
     }
     private ItemModelBuilder simpleItem(Item item) {
         ResourceLocation location = ForgeRegistries.ITEMS.getKey(item);
@@ -47,7 +44,7 @@ public class ModItemModelProvider extends ItemModelProvider {
     }
 
     private ItemModelBuilder handheldItem(Item item) {
-        ResourceLocation location = ForgeRegistries.ITEMS.getKey(item);;
+        ResourceLocation location = ForgeRegistries.ITEMS.getKey(item);
         return withExistingParent(location.toString(),
                 new ResourceLocation("item/handheld")).texture("layer0",
                 new ResourceLocation(BetterAllays.MODID,"item/" + location.getPath()));
