@@ -15,37 +15,25 @@ public class ModItemModelProvider extends ItemModelProvider {
         super(generator, BetterAllays.MODID, existingFileHelper);
     }
 
-    private void makeHeadphones() {
+    @Override
+    protected void registerModels() {
         Item[] headphones = ColorsUtil.HEADPHONES;
-        String[] colors = ColorsUtil.COLOR_NAMES;
 
-        for(int i = 0; i < headphones.length; i++){
-            headphoneItem(headphones[i], colors[i]);
+        for (Item headphone : headphones) {
+            simpleItem(headphone);
         }
     }
 
-    @Override
-    protected void registerModels() {
-        makeHeadphones();
-    }
-
-    private ItemModelBuilder headphoneItem(Item item, String color) {
+    private void simpleItem(Item item) {
         ResourceLocation location = ForgeRegistries.ITEMS.getKey(item);
-        return withExistingParent(location.toString(),
-                new ResourceLocation("item/generated"))
-                .texture("layer0",
-                new ResourceLocation(BetterAllays.MODID,"item/headphones/" + color));
-    }
-    private ItemModelBuilder simpleItem(Item item) {
-        ResourceLocation location = ForgeRegistries.ITEMS.getKey(item);
-        return withExistingParent(location.toString(),
+        withExistingParent(location.toString(),
                 new ResourceLocation("item/generated")).texture("layer0",
-                new ResourceLocation(BetterAllays.MODID,"item/" + location.getPath()));
+                new ResourceLocation(BetterAllays.MODID, "item/" + location.getPath()));
     }
 
-    private ItemModelBuilder handheldItem(Item item) {
+    private void handheldItem(Item item) {
         ResourceLocation location = ForgeRegistries.ITEMS.getKey(item);
-        return withExistingParent(location.toString(),
+        withExistingParent(location.toString(),
                 new ResourceLocation("item/handheld")).texture("layer0",
                 new ResourceLocation(BetterAllays.MODID,"item/" + location.getPath()));
     }

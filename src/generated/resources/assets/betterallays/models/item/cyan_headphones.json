@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "betterallays:item/headphones/cyan"
+    "layer0": "betterallays:item/cyan_headphones"
   }
 }
