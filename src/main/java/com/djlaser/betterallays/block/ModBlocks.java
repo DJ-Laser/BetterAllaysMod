@@ -5,6 +5,7 @@ import com.djlaser.betterallays.item.ModItems;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.level.block.AmethystClusterBlock;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
@@ -36,14 +37,26 @@ public class ModBlocks {
                     .requiresCorrectToolForDrops()
             ), CreativeModeTab.TAB_BUILDING_BLOCKS);
 
+    public static final RegistryObject<Block> JADE_CLUSTER = registerBlock("jade_cluster",
+            () -> new AmethystClusterBlock(7, 3,
+                            BlockBehaviour.Properties
+                                    .of(Material.AMETHYST)
+                                    .noOcclusion()
+                                    .randomTicks()
+                                    .sound(SoundType.AMETHYST_CLUSTER)
+                                    .strength(1.5F)
+                                    .lightLevel((p_152632_) -> 5)
+
+            ), CreativeModeTab.TAB_MATERIALS);
+
     private static <T extends Block>RegistryObject<T> registerBlock(String name, Supplier<T> block, CreativeModeTab tab){
         RegistryObject<T> toReturn = BLOCKS.register(name, block);
         registerBlockItem(name, toReturn, tab);
         return toReturn;
     }
 
-    private static <T extends Block>RegistryObject<Item> registerBlockItem(String name, RegistryObject<T> block, CreativeModeTab tab){
-        return ModItems.ITEMS.register(name, () -> new BlockItem(block.get(), new Item.Properties().tab(tab)));
+    private static <T extends Block> void registerBlockItem(String name, RegistryObject<T> block, CreativeModeTab tab){
+        ModItems.ITEMS.register(name, () -> new BlockItem(block.get(), new Item.Properties().tab(tab)));
     }
 
     public static void register(IEventBus eventBus) {

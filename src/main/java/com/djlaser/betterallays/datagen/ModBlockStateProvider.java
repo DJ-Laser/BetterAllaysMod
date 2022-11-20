@@ -46,6 +46,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
     protected void registerStatesAndModels() {
         simpleBlock(ModBlocks.JADE_BLOCK.get());
         simpleBlock(ModBlocks.BUDDING_JADE.get());
+
     }
 
     @Override
