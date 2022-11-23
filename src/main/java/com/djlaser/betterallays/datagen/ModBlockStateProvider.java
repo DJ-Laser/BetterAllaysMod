@@ -46,18 +46,15 @@ public class ModBlockStateProvider extends BlockStateProvider {
     protected void registerStatesAndModels() {
         simpleBlock(ModBlocks.JADE_BLOCK.get());
         simpleBlock(ModBlocks.BUDDING_JADE.get());
-        directionalBlockWithRenderType(ModBlocks.JADE_CLUSTER.get(), "cutout");
-        directionalBlockWithRenderType(ModBlocks.JADE_CLUSTER.get(), "cutout");
-        directionalBlockWithRenderType(ModBlocks.JADE_CLUSTER.get(), "cutout");
+        crystalCrossBlock(ModBlocks.JADE_CLUSTER.get());
+        crystalCrossBlock(ModBlocks.JADE_CLUSTER.get());
+        crystalCrossBlock(ModBlocks.JADE_CLUSTER.get());
     }
 
-    void directionalBlockWithRenderType(Block block, String renderType) {
-        directionalBlock(block, models().cross(name(block), blockTexture(block)).renderType(renderType));
+    public void crystalCrossBlock(Block block){
+        directionalBlock(block, models().cross(name(block), blockTexture(block)).renderType("cutout"));
     }
 
-    void directionalBlock(Block block) {
-        directionalBlock(block, models().cross(name(block), blockTexture(block)));
-    }
     @Override
     public VariantBlockStateBuilder getVariantBuilder(Block b) {
         itemModelProvider.blocks.add(ForgeRegistries.BLOCKS.getKey(b));
