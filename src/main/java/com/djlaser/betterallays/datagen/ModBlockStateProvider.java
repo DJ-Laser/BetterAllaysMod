@@ -46,9 +46,12 @@ public class ModBlockStateProvider extends BlockStateProvider {
     protected void registerStatesAndModels() {
         simpleBlock(ModBlocks.JADE_BLOCK.get());
         simpleBlock(ModBlocks.BUDDING_JADE.get());
-
+        directionalBlock(ModBlocks.JADE_CLUSTER.get());
     }
 
+    void directionalBlock(Block block) {
+        directionalBlock(block, models().cross(name(block), blockTexture(block)).renderType("cutout"));
+    }
     @Override
     public VariantBlockStateBuilder getVariantBuilder(Block b) {
         itemModelProvider.blocks.add(ForgeRegistries.BLOCKS.getKey(b));
@@ -59,5 +62,13 @@ public class ModBlockStateProvider extends BlockStateProvider {
     public void run(CachedOutput cache) throws IOException {
         super.run(cache);
         itemModelProvider.run(cache);
+    }
+
+    private ResourceLocation key(Block block) {
+        return ForgeRegistries.BLOCKS.getKey(block);
+    }
+
+    private String name(Block block) {
+        return key(block).getPath();
     }
 }

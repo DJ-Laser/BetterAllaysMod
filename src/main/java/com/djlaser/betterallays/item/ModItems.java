@@ -20,6 +20,10 @@ public class ModItems {
                 ));
     }
 
+    public static final RegistryObject<Item> JADE_SHARD = ITEMS.register("jade_shard", () ->
+            new Item(new Item.Properties()
+                    .tab(CreativeModeTab.TAB_MATERIALS)
+            ));
     public static final RegistryObject<Item> BLACK_HEADPHONES = makeHeadphone("black");
     public static final RegistryObject<Item> BLUE_HEADPHONES = makeHeadphone("blue");
     public static final RegistryObject<Item> BROWN_HEADPHONES = makeHeadphone("brown");
