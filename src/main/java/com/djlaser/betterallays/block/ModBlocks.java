@@ -45,9 +45,27 @@ public class ModBlocks {
                                     .randomTicks()
                                     .sound(SoundType.AMETHYST_CLUSTER)
                                     .strength(1.5F)
-                                    .lightLevel((p_152632_) -> 5)
+                                    .lightLevel((l) -> 5)
 
-            ), CreativeModeTab.TAB_MATERIALS);
+            ), CreativeModeTab.TAB_DECORATIONS);
+
+    public static final RegistryObject<Block> LARGE_JADE_BUD = registerBlock("large_jade_bud",
+            () -> new AmethystClusterBlock(5, 3,
+                    BlockBehaviour.Properties
+                            .copy(JADE_CLUSTER.get()).sound(SoundType.LARGE_AMETHYST_BUD).lightLevel((l) -> 4)
+            ), CreativeModeTab.TAB_DECORATIONS);
+
+    public static final RegistryObject<Block> MEDIUM_JADE_BUD = registerBlock("medium_jade_bud",
+            () -> new AmethystClusterBlock(4, 3,
+                    BlockBehaviour.Properties
+                            .copy(JADE_CLUSTER.get()).sound(SoundType.MEDIUM_AMETHYST_BUD).lightLevel((l) -> 2)
+            ), CreativeModeTab.TAB_DECORATIONS);
+
+    public static final RegistryObject<Block> SMALL_JADE_BUD = registerBlock("small_jade_bud",
+            () -> new AmethystClusterBlock(3, 4,
+                    BlockBehaviour.Properties
+                            .copy(JADE_CLUSTER.get()).sound(SoundType.SMALL_AMETHYST_BUD).lightLevel((l) -> 1)
+            ), CreativeModeTab.TAB_DECORATIONS);
 
     private static <T extends Block>RegistryObject<T> registerBlock(String name, Supplier<T> block, CreativeModeTab tab){
         RegistryObject<T> toReturn = BLOCKS.register(name, block);

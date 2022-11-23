@@ -46,11 +46,17 @@ public class ModBlockStateProvider extends BlockStateProvider {
     protected void registerStatesAndModels() {
         simpleBlock(ModBlocks.JADE_BLOCK.get());
         simpleBlock(ModBlocks.BUDDING_JADE.get());
-        directionalBlock(ModBlocks.JADE_CLUSTER.get());
+        directionalBlockWithRenderType(ModBlocks.JADE_CLUSTER.get(), "cutout");
+        directionalBlockWithRenderType(ModBlocks.JADE_CLUSTER.get(), "cutout");
+        directionalBlockWithRenderType(ModBlocks.JADE_CLUSTER.get(), "cutout");
+    }
+
+    void directionalBlockWithRenderType(Block block, String renderType) {
+        directionalBlock(block, models().cross(name(block), blockTexture(block)).renderType(renderType));
     }
 
     void directionalBlock(Block block) {
-        directionalBlock(block, models().cross(name(block), blockTexture(block)).renderType("cutout"));
+        directionalBlock(block, models().cross(name(block), blockTexture(block)));
     }
     @Override
     public VariantBlockStateBuilder getVariantBuilder(Block b) {

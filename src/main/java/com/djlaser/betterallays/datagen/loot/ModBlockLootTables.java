@@ -35,7 +35,9 @@ public class ModBlockLootTables extends BlockLoot {
                                                 .apply(SetItemCountFunction
                                                         .setCount(ConstantValue
                                                                 .exactly(2.0F)))))));
-
+        this.dropWhenSilkTouch(ModBlocks.LARGE_JADE_BUD.get());
+        this.dropWhenSilkTouch(ModBlocks.MEDIUM_JADE_BUD.get());
+        this.dropWhenSilkTouch(ModBlocks.SMALL_JADE_BUD.get());
     }
 
     @Override
