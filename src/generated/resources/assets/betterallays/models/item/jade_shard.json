@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "betterallays:block/jade_cluster"
+    "layer0": "betterallays:item/jade_shard"
   }
 }

@@ -18,19 +18,45 @@ import java.util.ArrayList;
 public class ModBlockStateProvider extends BlockStateProvider {
 
     private static class BlockItemModelProvider extends ItemModelProvider {
-        private final ArrayList<ResourceLocation> blocks = new ArrayList<>();
+        private final ArrayList<ResourceLocation> BLOCKS = new ArrayList<>();
+        private final ArrayList<ResourceLocation> BLOCKITEMS = new ArrayList<>();
 
         public BlockItemModelProvider(DataGenerator generator, ExistingFileHelper existingFileHelper) {
             super(generator, BetterAllays.MODID, existingFileHelper);
         }
 
+        public boolean isRegistered(ResourceLocation loc){
+            return BLOCKS.contains(loc) || BLOCKITEMS.contains(loc);
+        }
+
+        public void addIfNew(ResourceLocation loc, boolean item){
+            if(!this.isRegistered(loc)){
+                if (item){
+                    BLOCKITEMS.add(loc);
+                } else {
+                    BLOCKS.add(loc);
+                }
+            }
+        }
+
+        public void addIfNew(ResourceLocation loc){
+            addIfNew(loc, false);
+        }
+
+        private ResourceLocation addFolders(ResourceLocation loc, String prefix){
+            return new ResourceLocation(loc.getNamespace(),prefix + loc.getPath());
+        }
+
         @Override
         protected void registerModels() {
-            for (ResourceLocation block : blocks) {
-                getBuilder(block.toString())
-                        .parent(getExistingFile(
-                                new ResourceLocation(block.getNamespace(),"block/" + block.getPath())
-                        ));
+            for (ResourceLocation block : BLOCKS) {
+                withExistingParent(block.toString(), addFolders(block, "block/")
+                        );
+            }
+
+            for (ResourceLocation item : BLOCKITEMS) {
+                withExistingParent(item.toString(), "item/generated")
+                        .texture("layer0", addFolders(item, "block/"));
             }
         }
     }
@@ -39,7 +65,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
 
     public ModBlockStateProvider(DataGenerator gen, ExistingFileHelper exFileHelper) {
         super(gen, BetterAllays.MODID, exFileHelper);
-        this.itemModelProvider = new BlockItemModelProvider(gen, exFileHelper);
+        itemModelProvider = new BlockItemModelProvider(gen, exFileHelper);
     }
 
     @Override
@@ -53,13 +79,14 @@ public class ModBlockStateProvider extends BlockStateProvider {
     }
 
     public void crystalCrossBlock(Block block){
+        itemModelProvider.addIfNew(key(block), true);
         directionalBlock(block, models().cross(name(block), blockTexture(block)).renderType("cutout"));
     }
 
     @Override
-    public VariantBlockStateBuilder getVariantBuilder(Block b) {
-        itemModelProvider.blocks.add(ForgeRegistries.BLOCKS.getKey(b));
-        return super.getVariantBuilder(b);
+    public VariantBlockStateBuilder getVariantBuilder(Block block) {
+        itemModelProvider.addIfNew(key(block));
+        return super.getVariantBuilder(block);
     }
 
     @Override

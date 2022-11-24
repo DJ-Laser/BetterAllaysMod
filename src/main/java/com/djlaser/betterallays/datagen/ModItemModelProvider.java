@@ -1,11 +1,11 @@
 package com.djlaser.betterallays.datagen;
 
 import com.djlaser.betterallays.BetterAllays;
+import com.djlaser.betterallays.item.ModItems;
 import com.djlaser.betterallays.util.ColorsUtil;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
-import net.minecraftforge.client.model.generators.ItemModelBuilder;
 import net.minecraftforge.client.model.generators.ItemModelProvider;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -22,6 +22,8 @@ public class ModItemModelProvider extends ItemModelProvider {
         for (Item headphone : headphones) {
             simpleItem(headphone);
         }
+
+        simpleItem(ModItems.JADE_SHARD.get());
     }
 
     private void simpleItem(Item item) {

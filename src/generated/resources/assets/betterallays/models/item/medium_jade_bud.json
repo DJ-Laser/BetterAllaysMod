@@ -1,3 +1,6 @@
 {
-  "parent": "betterallays:block/medium_jade_bud"
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "betterallays:block/medium_jade_bud"
+  }
 }
