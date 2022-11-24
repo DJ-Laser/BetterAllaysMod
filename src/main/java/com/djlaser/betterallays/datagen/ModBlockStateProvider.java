@@ -49,7 +49,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
         crystalCrossBlock(ModBlocks.JADE_CLUSTER.get());
         crystalCrossBlock(ModBlocks.LARGE_JADE_BUD.get());
         crystalCrossBlock(ModBlocks.MEDIUM_JADE_BUD.get());
-        crystalCrossBlock(ModBlocks.LARGE_JADE_BUD.get());
+        crystalCrossBlock(ModBlocks.SMALL_JADE_BUD.get());
     }
 
     public void crystalCrossBlock(Block block){
