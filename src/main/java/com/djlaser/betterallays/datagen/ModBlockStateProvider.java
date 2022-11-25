@@ -20,6 +20,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
     private static class BlockItemModelProvider extends ItemModelProvider {
         private final ArrayList<ResourceLocation> BLOCKS = new ArrayList<>();
         private final ArrayList<ResourceLocation> BLOCKITEMS = new ArrayList<>();
+        private final ArrayList<ResourceLocation> ITEMS = new ArrayList<>();
 
         public BlockItemModelProvider(DataGenerator generator, ExistingFileHelper existingFileHelper) {
             super(generator, BetterAllays.MODID, existingFileHelper);
@@ -29,18 +30,18 @@ public class ModBlockStateProvider extends BlockStateProvider {
             return BLOCKS.contains(loc) || BLOCKITEMS.contains(loc);
         }
 
-        public void addIfNew(ResourceLocation loc, boolean item){
+        public void addIfNew(ResourceLocation loc, ITEMTYPE itemtype){
             if(!this.isRegistered(loc)){
-                if (item){
-                    BLOCKITEMS.add(loc);
-                } else {
-                    BLOCKS.add(loc);
+                switch (itemtype){
+                    case BLOCK -> BLOCKS.add(loc);
+                    case ITEM -> ITEMS.add(loc);
+                    case BLOCKITEM -> BLOCKITEMS.add(loc);
                 }
             }
         }
 
         public void addIfNew(ResourceLocation loc){
-            addIfNew(loc, false);
+            addIfNew(loc, ITEMTYPE.BLOCK);
         }
 
         private ResourceLocation addFolders(ResourceLocation loc, String prefix){
@@ -58,7 +59,18 @@ public class ModBlockStateProvider extends BlockStateProvider {
                 withExistingParent(item.toString(), "item/generated")
                         .texture("layer0", addFolders(item, "block/"));
             }
+
+            for (ResourceLocation item : ITEMS) {
+                withExistingParent(item.toString(), "item/generated")
+                        .texture("layer0", addFolders(item, "item/"));
+            }
         }
+    }
+
+    public enum ITEMTYPE {
+        BLOCK,
+        ITEM,
+        BLOCKITEM
     }
 
     private final BlockItemModelProvider itemModelProvider;
@@ -79,7 +91,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
     }
 
     public void crystalCrossBlock(Block block){
-        itemModelProvider.addIfNew(key(block), true);
+        itemModelProvider.addIfNew(key(block), ITEMTYPE.BLOCKITEM);
         directionalBlock(block, models().cross(name(block), blockTexture(block)).renderType("cutout"));
     }
 
