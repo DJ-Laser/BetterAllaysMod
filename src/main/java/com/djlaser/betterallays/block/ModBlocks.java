@@ -10,6 +10,7 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.material.Material;
+import net.minecraft.world.level.material.MaterialColor;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -29,13 +30,17 @@ public class ModBlocks {
             ), CreativeModeTab.TAB_BUILDING_BLOCKS);
 
     public static final RegistryObject<Block> BUDDING_JADE = registerBlock("budding_jade",
-            () -> new Block(BlockBehaviour.Properties
+            () -> new TemplateBuddingBlock(BlockBehaviour.Properties
                     .of(Material.AMETHYST)
                     .randomTicks()
                     .strength(1.5F)
                     .sound(SoundType.AMETHYST)
-                    .requiresCorrectToolForDrops()
-            ), CreativeModeTab.TAB_BUILDING_BLOCKS);
+                    .requiresCorrectToolForDrops(), new Block[]{
+                    ModBlocks.SMALL_JADE_BUD.get(),
+                    ModBlocks.MEDIUM_JADE_BUD.get(),
+                    ModBlocks.LARGE_JADE_BUD.get(),
+                    ModBlocks.JADE_CLUSTER.get()
+            }), CreativeModeTab.TAB_BUILDING_BLOCKS);
 
     public static final RegistryObject<Block> JADE_CLUSTER = registerBlock("jade_cluster",
             () -> new AmethystClusterBlock(7, 3,
