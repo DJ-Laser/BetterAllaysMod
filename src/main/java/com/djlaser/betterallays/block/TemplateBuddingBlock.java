@@ -9,15 +9,18 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.BuddingAmethystBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.Fluids;
+
+import java.util.function.Supplier;
+
 import org.jetbrains.annotations.NotNull;
 
 public class TemplateBuddingBlock extends BuddingAmethystBlock  {
     protected static final Direction[] DIRECTIONS = Direction.values();
 
     private final Block[] clusters;
-    public TemplateBuddingBlock(Properties props, Block[] clusterList) {
+    public TemplateBuddingBlock(Properties props, Supplier<Block[]> clusterList) {
         super(props);
-        clusters = clusterList;
+        clusters = clusterList.get();
     }
 
     @Override

@@ -35,7 +35,7 @@ public class ModBlocks {
                     .randomTicks()
                     .strength(1.5F)
                     .sound(SoundType.AMETHYST)
-                    .requiresCorrectToolForDrops(), new Block[]{
+                    .requiresCorrectToolForDrops(), () -> new Block[]{
                     ModBlocks.SMALL_JADE_BUD.get(),
                     ModBlocks.MEDIUM_JADE_BUD.get(),
                     ModBlocks.LARGE_JADE_BUD.get(),
